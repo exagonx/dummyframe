@@ -20,6 +20,7 @@
 #include "gfbutton.bas"
 #include "gfmenu.bas"
 #include "gfwindow.bas"
+#include "gftext.bas"
 
 sub  GFGUI.P_UNDERLINE(byval XPosition as integer, byval YPosition as integer, byval Text as string, byval TextColor as integer) export
 	dim as string StringText = ""

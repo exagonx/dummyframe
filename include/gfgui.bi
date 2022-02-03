@@ -103,6 +103,24 @@ type GFMENU extends GFGUI
 	declare function GF_SET_SIZE(byval Cols as integer, byval Rows as integer)as integer
 	declare function HANDLER()as integer
 end type
+type GFTEXT extends GFGUI
+	dim as integer XPosition = 0, YPosition = 0
+	dim as integer text_Width = 0, text_Height = 0
+	dim as integer Text_Color = -1
+	dim as integer MaxPages = 99, MaxRows = 20
+	
+	dim as string TEXT_STRING
+	
+	redim DocBuffer(0 To 99, 0 to 20) as string
+	redim CopyBuffer(0 To 99, 0 to 20) as string
+	
+	declare function TEXT_BOX()as integer
+	declare function EXPAND_BUFFER(byval Pages as integer, byval Rows as integer)as integer
+	
+	declare sub TEXT_LABEL(byval StringText as string  = "")
+	
+end type
+
 dim GFGUI.ScreenWidth as integer
 dim GFGUI.ScreenHeight as integer
 

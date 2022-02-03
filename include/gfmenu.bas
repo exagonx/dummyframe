@@ -384,15 +384,19 @@ sub GFMENU.SubMenu_Open() export
 			this.P_SQUARE(this.SMX_StartPosition +1, this.SMY_StartPosition +1, SubMenuWidth -2, SubMenuHeight + (TotalVoices * 8) -2 , MSIn,0,0)	
 			
 			for CicleM = 0 to TotalVoices step 1
-
+						
+						' Retrive the Menu coordinates for make the correct square for the menu string
+						
 						SubMenuYPosMin = this.SMY_StartPosition + (CicleM * 16) + 0
 						SubMenuYPosMax = this.SMY_StartPosition + (CicleM * 16) + 16
 						SubMenuXPosMin = this.SMX_StartPosition + 8 
-						SubMenuXPosMax = SubMenuHeight + (TotalVoices * 8) -2
+						SubMenuXPosMax =  this.SMX_StartPosition + 8 + SubMenuWidth 'SubMenuHeight + (TotalVoices * 8) -2
 						
 					if CurrentX > SubMenuXPosMin and CurrentY > SubMenuYPosMin and CurrentX < SubMenuXPosMax and CurrentY < SubMenuYPosMax then
 						SubMenuSelected = CicleM
-						locate 20,10: print "SubMenuYPosMin = " & SubMenuYPosMin & " SubMenuYPosMax = " & SubMenuYPosMax & "    "
+						'debug code for write the coordinates
+						'locate 20,10: print "SubMenuYPosMin = " & SubMenuYPosMin & " SubMenuYPosMax = " & SubMenuYPosMax & "    "
+						'locate 21,10: print "SubMenuXPosMin = " & SubMenuXPosMin & " SubMenuXPosMax = " & SubMenuXPosMax & "    "
 					else 
 						
 					end if
@@ -402,7 +406,7 @@ sub GFMENU.SubMenu_Open() export
 					
 					
 
-					
+					 ' if selected invert color of background and char
 					if SubMenuSelected = CicleM then 
 						CurrCharColor = MSIn 
 						CurrBGColor = Bor
@@ -411,7 +415,8 @@ sub GFMENU.SubMenu_Open() export
 						CurrBGColor = MSIn
 					end if
 					
-					this.P_SQUARE(this.SMX_StartPosition , this.SMY_StartPosition + (CicleM * 16) + 2, SubMenuWidth - 2, 14 , CurrBGColor,0,0)	
+					' draw and write the selected and unselected menu string
+					this.P_SQUARE(this.SMX_StartPosition + 2 , this.SMY_StartPosition + (CicleM * 16) + 2, SubMenuWidth - 4, 14 , CurrBGColor,0,0)	
 					this.P_UNDERLINE(this.SMX_StartPosition + 8 , this.SMY_StartPosition + (CicleM * 16) + 4, SubMenuVoice(CicleM), CurrCharColor)
 				end if
 			next CicleM
